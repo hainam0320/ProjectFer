@@ -1,15 +1,11 @@
 body {
-    background-color: #111;
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    background-color: gray;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between; /* Đưa các phần tử về hai bên */
-    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between;
+    align-items: center;
     background-color: #222;
     padding: 10px 20px;
 }
@@ -21,7 +17,7 @@ body {
 
 .navbar-nav {
     display: flex;
-    align-items: center; /* Căn giữa theo chiều dọc */
+    align-items: center;
 }
 
 .nav-link {
@@ -33,6 +29,7 @@ body {
 .nav-link:hover {
     text-decoration: underline;
 }
+
 .header {
     text-align: center;
     padding: 50px 0;
@@ -49,7 +46,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
 }
 
@@ -108,22 +105,27 @@ body {
     width: calc(25% - 20px);
 }
 
-.trending-products .product img {
+.product {
+    margin: 0 10px 20px;
+    vertical-align: top;
+}
+
+.product img {
     border: 1px solid #333;
     padding: 5px;
 }
 
-.trending-products .product p {
+.product h5 {
     margin: 10px 0;
     font-size: 1em;
 }
 
-.trending-products .product .price {
+.product p {
+    margin: 10px 0;
     font-size: 1.2em;
     color: #007bff;
 }
 
-/* New styles for the top bar and navbar */
 .top-bar {
     background-color: #222;
     color: white;
@@ -155,5 +157,28 @@ body {
 
 .navbar-menu a:hover {
     text-decoration: underline;
+}
+
+.navbar-nav.me-auto {
+    margin-right: auto;
+}
+
+.navbar-nav.ms-auto {
+    margin-left: auto;
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    margin-right: 10px;
+}
+
+.btn-outline-success {
+    color: white;
+    border-color: white;
+    
 }
 
