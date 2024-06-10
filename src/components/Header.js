@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "../styles/Style.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons'; // Import the icon for the shopping cart
 
 const Header = () => {
     return (             
@@ -44,11 +44,56 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/register">Register</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/cart">
+                                    <FontAwesomeIcon icon={faShoppingCart} />
+                                </Link>
+                            </li>
                         </ul>
                         
                     </div>
                 </nav>
             </header>
+            <div className="full-width">
+                <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+                    <div className="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div className="carousel-inner">
+                        <div className="carousel-item active">
+                            <img src="./logo512.png" className="d-block w-100" alt="..." />
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Delicious Margherita Pizza</h5>
+                                <p>Enjoy the classic taste of Margherita with fresh ingredients.</p>
+                            </div>
+                        </div>
+                        <div className="carousel-item">
+                            <img src="./logo512.png" className="d-block w-100" alt="..." />
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Delicious Margherita Pizza</h5>
+                                <p>Enjoy the classic taste of Margherita with fresh ingredients.</p>
+                            </div>
+                        </div>
+                        <div className="carousel-item">
+                            <img src="./logo512.png" className="d-block w-100" alt="..." />
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Delicious Margherita Pizza</h5>
+                                <p>Enjoy the classic taste of Margherita with fresh ingredients.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span className="visually-hidden">Previous</span>
+                    </button>
+                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span className="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

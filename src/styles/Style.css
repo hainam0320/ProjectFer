@@ -179,6 +179,20 @@ body {
 .btn-outline-success {
     color: white;
     border-color: white;
-    
+
 }
 
+.full-width {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.carousel {
+    margin-top: 2rem;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 10px;
+}
