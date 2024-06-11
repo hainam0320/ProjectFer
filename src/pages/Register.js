@@ -1,7 +1,7 @@
 // src/pages/Register.js
 
 import React, { useState } from 'react';
-import "../styles/LoginRegister.css";
+import "../styles/Style.css";
 
 const Register = () => {
     const [name, setName] = useState('');

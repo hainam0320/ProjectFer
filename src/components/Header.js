@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../styles/Style.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons'; // Import the icon for the shopping cart
+import { faShoppingCart, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
-    return (             
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
+    return (
         <div className="full-width">
             <header>
                 <div className="top-bar">
@@ -16,11 +22,11 @@ const Header = () => {
                 </div>
                 <nav className="navbar navbar-expand-lg navbar-dark">
                     <Link className="navbar-brand" to="/">NamAnh Store</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                    <button className="navbar-toggler" type="button" onClick={toggleMenu}>
+                        <FontAwesomeIcon icon={faBars} />
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
+                        <div className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <Link className="nav-link" to="/">Home</Link>
                             </li>
@@ -30,68 +36,40 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/contact">Contact</Link>
                             </li>
-                        </ul>
-                        <form className="d-flex form-inline">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">
-                                <FontAwesomeIcon icon={faSearch} />
-                            </button>
-                        </form>
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <Link className="nav-link" to="/login">Login</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/register">Register</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/cart">
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                </Link>
-                            </li>
-                        </ul>
-                        
+                            <div className="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/login">Login</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/register">Register</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/cart">
+                                        <FontAwesomeIcon icon={faShoppingCart} />
+                                    </Link>
+                                </li>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </header>
-            <div className="full-width">
-                <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
-                    <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <div className="hero bg-base-200 bg-blend-overlay">
+                <div className="hero-content text-center">
+                    <div className="max-w-xl">
+                        <h1 className="text-6xl font-bold max-md:text-4xl text-accent-content">Best Clothing Shop Of The Year!</h1>
+                        <p className="py-6 text-2xl max-md:text-lg text-accent-content">
+                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+                            excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+                            et a id nisi.
+                        </p>
+                        <Link to="/shop" className="btn btn-wide bg-blue-600 hover:bg-blue-500 text-white">Shop Now</Link>
                     </div>
-                    <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img src="./logo512.png" className="d-block w-100" alt="..." />
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>Delicious Margherita Pizza</h5>
-                                <p>Enjoy the classic taste of Margherita with fresh ingredients.</p>
-                            </div>
-                        </div>
-                        <div className="carousel-item">
-                            <img src="./logo512.png" className="d-block w-100" alt="..." />
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>Delicious Margherita Pizza</h5>
-                                <p>Enjoy the classic taste of Margherita with fresh ingredients.</p>
-                            </div>
-                        </div>
-                        <div className="carousel-item">
-                            <img src="./logo512.png" className="d-block w-100" alt="..." />
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>Delicious Margherita Pizza</h5>
-                                <p>Enjoy the classic taste of Margherita with fresh ingredients.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
         </div>
