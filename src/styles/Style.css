@@ -577,77 +577,59 @@ img.img-fluid {
 /* ProductDetail.css */
 
 .product-detail-container {
+    padding: 20px;
+  }
+  
+  .product-detail-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px 0;
-}
-
-.product-detail-card {
-    width: 80%;
-    max-width: 1200px;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.product-detail-image {
-    flex: 1;
-    margin-right: 30px;
-}
-
-.product-detail-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.product-detail-info {
-    flex: 1;
-}
-
-.product-detail-title {
-    font-size: 28px;
+  }
+  
+  .product-detail-info {
+    padding: 20px;
+  }
+  
+  .product-detail-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .product-detail-price {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .product-detail-description {
     margin-bottom: 20px;
-}
-
-.product-detail-price {
-    font-size: 20px;
+  }
+  
+  .product-detail-quantity,
+  .product-detail-size {
     margin-bottom: 20px;
-}
-
-.product-detail-description {
+  }
+  
+  .product-detail-quantity label,
+  .product-detail-size label {
     font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.product-detail-quantity {
-    margin-bottom: 20px;
-}
-
-.product-detail-size {
-    margin-bottom: 20px;
-}
-
-.product-detail-actions {
-    display: flex;
-    align-items: center;
-}
-
-.product-detail-btn {
-    padding: 12px 24px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.product-detail-btn:hover {
-    background-color: #0056b3;
-}
+    margin-right: 10px;
+  }
+  
+  .product-detail-quantity input,
+  .product-detail-size select {
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .product-detail-actions {
+    margin-top: 20px;
+  }
+  
+  .product-detail-btn {
+    margin-right: 10px;
+  }
 
 /* Search css */
 .search-filter-container {

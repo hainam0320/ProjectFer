@@ -50,28 +50,29 @@ const Products = () => {
     };
 
     return (
-        <section className="container trending-products">
+        <section  className="container trending-products">
             <h2 className="text-center mb-4">Our Products</h2>
             <div className="search-filter-container">
-                <div className="filter-container">
+                <div className="filter-container" style={{paddingBottom:'10px',paddingLeft:'15px'}}>
                     {/* Thêm phần tử filter ở đây */}
-                    <select className="filter-select" onChange={handleFilterChange}>
+                    <select style={{color:'#292929',borderColor:'#292929',paddingRight:'2px'}} className="filter-select" onChange={handleFilterChange}>
                         <option value="all">All</option>
                         <option value="0-100">0 - 100$</option>
                         <option value="100-200">100 - 200$</option>
                     </select>
                 </div>
-                <div className="search-container">
+                <div className="search-container" style={{paddingLeft:'550px',paddingRight:'15px', paddingBottom:'10px'}}>
                     <input
                         type="text"
                         value={searchTerm}
                         onChange={handleSearch}
                         placeholder="Search products..."
                         className="search-input"
+                        
                     />
-                    <span className="search-icon">
+                    <button className="search-icon" style={{color:'white', backgroundColor:'#292929', width: '50px', height: '40px', borderRadius: '7px'}}>
                         <FontAwesomeIcon icon={faSearch} />
-                    </span>
+                    </button>
                 </div>
             </div>
             <div className="row">
@@ -79,8 +80,8 @@ const Products = () => {
                     <div key={product.id} className="col-md-3 col-sm-6 col-12 product">
                         <img src={product.image} alt={product.name} />
                         <h5>{product.name}</h5>
-                        <p>{`$${product.price}`}</p>
-                        <button className="btn btn-primary">
+                        <p style={{color:'red'}}>{`$${product.price}`}</p>
+                        <button style={{backgroundColor:'#292929' , borderColor:'black'}} className="btn btn-primary">
                             <FontAwesomeIcon icon={faCartPlus} /> Add to cart
                         </button>
                     </div>
