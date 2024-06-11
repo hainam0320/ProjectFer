@@ -5,15 +5,15 @@ import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const products = [
-    { id: 1, name: "Walk London Milano lap", price: 115, image: "logo192.png" },
-    { id: 2, name: "Walk London Saan tos", price: 88, image: "logo192.png" },
-    { id: 3, name: "Reebok x VB dual", price: 90, image: "logo192.png" },
-    { id: 4, name: "Nike Air Zoom", price: 130, image: "logo192.png" },
-    { id: 5, name: "Jack & Jones suede", price: 34.5, image: "logo192.png" },
-    { id: 6, name: "Croc classic all", price: 59.99, image: "logo192.png" },
-    { id: 7, name: "Vans Era Suede", price: 75, image: "logo192.png" },
-    { id: 8, name: "PUMA Palermo Leather", price: 85, image: "logo192.png" },
-    { id: 9, name: "PUMA Palermo Leather", price: 85, image: "logo192.png" }
+    { id: 1, name: "Walk London Milano lap", price: 115, image: "logo123.png" },
+    { id: 2, name: "Walk London Saan tos", price: 88, image: "logo123.png" },
+    { id: 3, name: "Reebok x VB dual", price: 90, image: "logo123.png" },
+    { id: 4, name: "Nike Air Zoom", price: 130, image: "logo123.png" },
+    { id: 5, name: "Jack & Jones suede", price: 34.5, image: "logo123.png" },
+    { id: 6, name: "Croc classic all", price: 59.99, image: "logo123.png" },
+    { id: 7, name: "Vans Era Suede", price: 75, image: "logo123.png" },
+    { id: 8, name: "PUMA Palermo Leather", price: 85, image: "logo123.png" },
+    { id: 9, name: "PUMA Palermo Leather", price: 85, image: "logo123.png" }
 ];
 
 const Products = () => {
