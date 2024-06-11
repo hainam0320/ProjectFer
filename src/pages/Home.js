@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link từ react-router-dom
 import "../styles/Style.css";
 
 const products = [
@@ -12,16 +13,21 @@ const products = [
     { id: 8, name: "PUMA Palermo Leather", price: "$85", image: "logo192.png" }
 ];
 
-const Products = () => {
+const Home = () => {
     return (
         <section className="container trending-products">
             <h2 className="text-center mb-4">Trending Products</h2>
             <div className="row">
                 {products.map(product => (
                     <div key={product.id} className="col-md-3 col-sm-6 col-12 product">
-                        <img src={product.image} alt={product.name} />
-                        <h5>{product.name}</h5>
-                        <p>{product.price}</p>
+                        <div className="card">
+                            <img src={product.image} alt={product.name} className="card-img-top" />
+                            <div className="card-body">
+                                <h5 className="card-title">{product.name}</h5>
+                                <p className="card-text">Price: {product.price}</p>
+                                <Link to={`/product/${product.id}`} className="btn btn-primary">View</Link>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -29,4 +35,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default Home;
