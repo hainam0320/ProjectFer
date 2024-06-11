@@ -38,7 +38,7 @@ const Header = () => {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/contact">Contact</Link>
-                            </li>                         
+                            </li>
                             <div className="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/login">Login</Link>
@@ -61,11 +61,9 @@ const Header = () => {
                     <div className="max-w-xl">
                         <h1 className="text-6xl font-bold max-md:text-4xl text-accent-content">Best Clothing Shop Of The Year!</h1>
                         <p className="py-6 text-2xl max-md:text-lg text-accent-content">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-                            excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-                            et a id nisi.
+                            They provide pleasure with desire and in. He sought to escape, as if he were to be accepted as an exercise. In the softening of them, or of repudiating them, and from that unless
                         </p>
-                        <Link to="/shop" className="btn btn-wide bg-blue-600 hover:bg-blue-500 text-white">Shop Now</Link>
+                        <Link to="/Product" className="btn btn-wide bg-blue-600 hover:bg-blue-500 text-white">Shop Now</Link>
                     </div>
                 </div>
             </div>
