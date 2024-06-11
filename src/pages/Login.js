@@ -1,7 +1,7 @@
 // src/pages/Login.js
 
 import React, { useState } from 'react';
-import "../styles/LoginRegister.css";
+import "../styles/Style.css";
 
 const Login = () => {
     const [email, setEmail] = useState('');
