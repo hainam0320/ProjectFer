@@ -1,7 +1,5 @@
-// src/pages/Login.js
-
 import React, { useState } from 'react';
-import "../styles/Style.css";
+import '../styles/Style.css'; // Import your main styles
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -37,7 +35,7 @@ const Login = () => {
                         required 
                     />
                 </div>
-                <button type="submit" className="btn">Login</button>
+                <button type="submit" className="btn login-btn">Login</button>
             </form>
         </div>
     );
