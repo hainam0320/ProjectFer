@@ -1,21 +1,27 @@
-// src/pages/Register.js
-
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "../styles/Style.css";
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const registerRef = useRef(null);
+    useEffect(() => {
+        if (registerRef.current) {
+            registerRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, []);
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle registration logic here
         console.log('Register submitted with:', { name, email, password });
+        if (registerRef.current) {
+            registerRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     return (
-        <div className="auth-container">
+        <div ref={registerRef} className="auth-container">
             <h2>Register</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">

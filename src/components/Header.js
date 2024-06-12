@@ -56,7 +56,7 @@ const Header = () => {
                     </div>
                 </nav>
             </header>
-            <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minHeight: '80vh' }} className="hero bg-base-200 bg-blend-overlay">
+            <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minHeight: '60vh' }} className="hero bg-base-200 bg-blend-overlay">
                 <div className="hero-content text-center">
                     <div className="max-w-xl">
                         <h1 className="text-6xl font-bold max-md:text-4xl text-accent-content">Best Clothing Shop Of The Year!</h1>

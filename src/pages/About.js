@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const About = () => {
+    const aboutRef = useRef(null);
+
+    useEffect(() => {
+        if (aboutRef.current) {
+            aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, []);
+
     return (
-        <div className="container">
+        <div ref={aboutRef} className="container">
             <section style={{border: '1px solid #ccc', borderRadius: '10px', paddingLeft: '20px',paddingRight: '20px',paddingBottom: '30px',paddingTop:'30px'}}>
                 <h1 style={{ textAlign: 'center' }}>About Us</h1>
 

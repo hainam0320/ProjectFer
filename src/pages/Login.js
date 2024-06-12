@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Style.css'; // Import your main styles
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const loginRef = useRef(null);
+    useEffect(() => {
+        if (loginRef.current) {
+            loginRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, []);
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle login logic here
         console.log('Login submitted with:', { email, password });
+        if (loginRef.current) {
+            loginRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     return (
-        <div className="auth-container">
+        <div ref={loginRef} className="auth-container">
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
