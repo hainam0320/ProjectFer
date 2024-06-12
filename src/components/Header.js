@@ -56,17 +56,18 @@ const Header = () => {
                     </div>
                 </nav>
             </header>
-            <div className="hero bg-base-200 bg-blend-overlay">
+            <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minHeight: '80vh' }} className="hero bg-base-200 bg-blend-overlay">
                 <div className="hero-content text-center">
                     <div className="max-w-xl">
                         <h1 className="text-6xl font-bold max-md:text-4xl text-accent-content">Best Clothing Shop Of The Year!</h1>
                         <p className="py-6 text-2xl max-md:text-lg text-accent-content">
-                            They provide pleasure with desire and in. He sought to escape, as if he were to be accepted as an exercise. In the softening of them, or of repudiating them, and from that unless
+                            We have a quality clothing
                         </p>
-                        <Link to="/Product" className="btn btn-wide bg-blue-600 hover:bg-blue-500 text-white">Shop Now</Link>
+                        <Link to="/product" className="btn btn-wide bg-blue-600 hover:bg-blue-500 text-white">Shop Now</Link>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
