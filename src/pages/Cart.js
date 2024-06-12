@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import "../styles/Style.css";
+import { Link } from 'react-router-dom';
 const Cart = () => {
     // Dummy cart items data for demonstration
     const [cartItems, setCartItems] = useState([
-        { id: 1, name: 'Cotton T-shirt', price: 44.00, quantity: 1, image: 'logo192.png' },
-        { id: 2, name: 'Cotton T-shirt', price: 44.00, quantity: 1, image: 'logo192.png' },
-        { id: 3, name: 'Cotton T-shirt', price: 44.00, quantity: 1, image: 'logo192.png' },
+        { id: 1, name: 'Cotton T-shirt', price: 44.00, quantity: 1, image: 'logo123.png' },
+        { id: 2, name: 'Cotton T-shirt', price: 44.00, quantity: 1, image: 'logo123.png' },
+        { id: 3, name: 'Cotton T-shirt', price: 44.00, quantity: 1, image: 'logo123.png' },
     ]);
 
     const incrementQuantity = (id) => {
@@ -75,7 +76,9 @@ const Cart = () => {
                         <div className="col">TOTAL PRICE</div>
                         <div className="col text-right">$ {(parseFloat(calculateTotal(cartItems)) + 5).toFixed(2)}</div>
                     </div>
-                    <button className="btn">CHECKOUT</button>
+                    <Link to='/checkout'>
+                        <button className="btn">CHECKOUT</button>
+                    </Link>
                 </div>
             </div>
         </div>
