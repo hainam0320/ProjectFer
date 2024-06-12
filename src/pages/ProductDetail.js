@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaHeart, FaCartPlus } from "react-icons/fa";
 import "../styles/Style.css";
-
+import { useNavigate } from "react-router-dom";
 const ProductDetail = () => {
   const product = {
     id: 1,
@@ -12,6 +12,12 @@ const ProductDetail = () => {
     sizes: ["37", "38", "39"],
   };
 
+  // Điều hướng đến product
+  const navigate = useNavigate();  
+
+  const handleBackToProducts = () => {
+    navigate('/product');  
+  };
 
   
   const [quantity, setQuantity] = useState(1);
@@ -65,6 +71,8 @@ const ProductDetail = () => {
                 Add to Wishlist
               </button>
             </div>
+            <br/>
+            <button className="btn btn-primary product-detail-btn" onClick={handleBackToProducts}>Back to Products</button>
           </div>
         </div>
       </section>

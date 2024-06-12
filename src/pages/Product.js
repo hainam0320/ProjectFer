@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import "../styles/Style.css";
 import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,7 @@ const products = [
     { id: 5, name: "Jack & Jones suede", price: 34.5, image: "logo123.png" },
     { id: 6, name: "Croc classic all", price: 59.99, image: "logo123.png" },
     { id: 7, name: "Vans Era Suede", price: 75, image: "logo123.png" },
-    { id: 8, name: "PUMA Palermo Leather", price: 85, image: "logo123.png" },
+    { id: 8, name: "PUMA Palermo Leather", price: 220, image: "logo123.png" },
     { id: 9, name: "PUMA Palermo Leather", price: 85, image: "logo123.png" }
 ];
 
@@ -21,14 +21,23 @@ const Products = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [priceRange, setPriceRange] = useState('all');
     const productsPerPage = 8;
+    const productSectionRef = useRef(null);
+
+    useEffect(() => {
+        if (productSectionRef.current) {
+            productSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [currentPage]);
 
     // Filter products based on search term and price range
     const filteredProducts = products.filter(product =>
         (product.name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '') &&
         ((priceRange === 'all') ||
-         (priceRange === '0-100' && product.price >= 0 && product.price <= 100) ||
-         (priceRange === '100-200' && product.price > 100 && product.price <= 200))
+         (priceRange === '1-100' && product.price >= 1 && product.price <= 100) ||
+         (priceRange === '110-200' && product.price >= 110 && product.price <= 200) ||
+         (priceRange === '210-500' && product.price >= 210 && product.price <= 500))
     );
+    
 
     // Calculate current products to display
     const offset = currentPage * productsPerPage;
@@ -50,15 +59,17 @@ const Products = () => {
     };
 
     return (
-        <section  className="container trending-products">
+        <section ref={productSectionRef} className="container trending-products">
             <h2 className="text-center mb-4">Our Products</h2>
             <div className="search-filter-container">
                 <div className="filter-container" style={{paddingBottom:'10px',paddingLeft:'15px'}}>
                     {/* Thêm phần tử filter ở đây */}
                     <select style={{color:'#292929',borderColor:'#292929',paddingRight:'2px'}} className="filter-select" onChange={handleFilterChange}>
                         <option value="all">All</option>
-                        <option value="0-100">0 - 100$</option>
-                        <option value="100-200">100 - 200$</option>
+                        <option value="1-100">1 - 100$</option>
+                        <option value="110-200">110 - 200$</option>
+                        <option value="210-500">210 - 500$</option>
+
                     </select>
                 </div>
                 <div className="search-container" style={{paddingLeft:'550px',paddingRight:'15px', paddingBottom:'10px'}}>
@@ -75,6 +86,9 @@ const Products = () => {
                     </button>
                 </div>
             </div>
+            {currentProducts.length === 0 && (
+                <p style={{ color: 'red', textAlign: 'center', marginTop: '20px' }}>Not found any product</p>
+            )}
             <div className="row">
                 {currentProducts.map(product => (
                     <div key={product.id} className="col-md-3 col-sm-6 col-12 product">

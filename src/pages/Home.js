@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link từ react-router-dom
 import "../styles/Style.css";
 
@@ -14,8 +14,14 @@ const products = [
 ];
 
 const Home = () => {
+    const homeRef = useRef(null);
+    useEffect(() => {
+        if (homeRef.current) {
+            homeRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, []);
     return (
-        <section className="container trending-products">
+        <section ref={homeRef} className="container trending-products">
             <h2 className="text-center mb-4">Trending Products</h2>
             <div className="row">
                 {products.map(product => (
