@@ -12,25 +12,27 @@ import Products from './pages/Product';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail'; 
 import Checkout from './pages/Checkout';
-
+import { CartProvider } from './features/CartContext'; // Import the CartProvider
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <Stats />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/product" element={<Products />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/checkout" element={<Checkout />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <CartProvider>
+      <Router>
+        <Header />
+        <Stats />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/product" element={<Products />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </CartProvider>
   );
 };
 

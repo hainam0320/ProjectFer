@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import ReactPaginate from 'react-paginate';
 import "../styles/Style.css";
 import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CartContext from '../features/CartContext';
 
 const products = [
     { id: 1, name: "Walk London Milano lap", price: 115, image: "logo123.png" },
@@ -17,6 +18,7 @@ const products = [
 ];
 
 const Products = () => {
+    const { addToCart, total, cart } = useContext(CartContext);
     const [currentPage, setCurrentPage] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [priceRange, setPriceRange] = useState('all');
@@ -29,7 +31,6 @@ const Products = () => {
         }
     }, [currentPage]);
 
-    // Filter products based on search term and price range
     const filteredProducts = products.filter(product =>
         (product.name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '') &&
         ((priceRange === 'all') ||
@@ -37,9 +38,7 @@ const Products = () => {
          (priceRange === '110-200' && product.price >= 110 && product.price <= 200) ||
          (priceRange === '210-500' && product.price >= 210 && product.price <= 500))
     );
-    
 
-    // Calculate current products to display
     const offset = currentPage * productsPerPage;
     const currentProducts = filteredProducts.slice(offset, offset + productsPerPage);
     const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
@@ -63,13 +62,11 @@ const Products = () => {
             <h2 className="text-center mb-4">Our Products</h2>
             <div className="search-filter-container">
                 <div className="filter-container" style={{paddingBottom:'10px',paddingLeft:'15px'}}>
-                    {/* Thêm phần tử filter ở đây */}
                     <select style={{color:'#292929',borderColor:'#292929',paddingRight:'2px'}} className="filter-select" onChange={handleFilterChange}>
                         <option value="all">All</option>
                         <option value="1-100">1 - 100$</option>
                         <option value="110-200">110 - 200$</option>
                         <option value="210-500">210 - 500$</option>
-
                     </select>
                 </div>
                 <div className="search-container" style={{paddingLeft:'550px',paddingRight:'15px', paddingBottom:'10px'}}>
@@ -79,7 +76,6 @@ const Products = () => {
                         onChange={handleSearch}
                         placeholder="Search products..."
                         className="search-input"
-                        
                     />
                     <button className="search-icon" style={{color:'white', backgroundColor:'#292929', width: '50px', height: '40px', borderRadius: '7px'}}>
                         <FontAwesomeIcon icon={faSearch} />
@@ -87,7 +83,7 @@ const Products = () => {
                 </div>
             </div>
             {currentProducts.length === 0 && (
-                <p style={{ color: 'red', textAlign: 'center', marginTop: '20px' }}>Not found any product</p>
+                <p style={{ color: 'red', textAlign: 'center', marginTop: '20px' }}>No products found</p>
             )}
             <div className="row">
                 {currentProducts.map(product => (
@@ -95,7 +91,11 @@ const Products = () => {
                         <img src={product.image} alt={product.name} />
                         <h5>{product.name}</h5>
                         <p style={{color:'red'}}>{`$${product.price}`}</p>
-                        <button style={{backgroundColor:'#292929' , borderColor:'black'}} className="btn btn-primary">
+                        <button 
+                            style={{backgroundColor:'#292929' , borderColor:'black'}} 
+                            className="btn btn-primary"
+                            onClick={() => addToCart(product)}
+                        >
                             <FontAwesomeIcon icon={faCartPlus} /> Add to cart
                         </button>
                     </div>

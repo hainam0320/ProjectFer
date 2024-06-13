@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import "../styles/Style.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faBars } from '@fortawesome/free-solid-svg-icons';
+import CartContext from '../features/CartContext';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    const { cart, total } = useContext(CartContext);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleMouseEnter = () => {
+        setIsCartOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsCartOpen(false);
     };
 
     return (
@@ -47,9 +58,23 @@ const Header = () => {
                                     <Link className="nav-link" to="/register">Register</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/cart">
-                                        <FontAwesomeIcon icon={faShoppingCart} />
-                                    </Link>
+                                    <div
+                                        className="nav-link cart-icon"
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
+                                        style={{ position: 'relative' }}
+                                    >
+                                        <Link to="/cart">
+                                            <FontAwesomeIcon icon={faShoppingCart} />
+                                        </Link>
+                                        {isCartOpen && (
+                                            <div className="cart-summary-popup">
+                                                <h3>Summary</h3>
+                                                <p>Total Items: {cart.length}</p>
+                                                <p>Total Price: ${total.toFixed(2)}</p>
+                                            </div>
+                                        )}
+                                    </div>
                                 </li>
                             </div>
                         </div>
@@ -67,7 +92,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
