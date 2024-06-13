@@ -153,7 +153,15 @@ img.img-fluid {
         max-width: 100%;
     }
 }
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; 
+    }
 
+    .summary {
+        margin-top: 20px; 
+    }
+}
 /* Css Header */
 .header {
     text-align: center;
