@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../styles/Style.css";
+import '../styles/Style.css'; // Import CSS styles
 import CartContext from '../features/CartContext';
 
 const Checkout = () => {
@@ -11,7 +11,7 @@ const Checkout = () => {
         phoneNumber: '',
         address: '',
         city: '',
-        note: ''
+        note: '',
     });
     const [errors, setErrors] = useState({});
     const [showAlert, setShowAlert] = useState(false);
@@ -42,90 +42,150 @@ const Checkout = () => {
             setShowAlert(true);
             setTimeout(() => {
                 setShowAlert(false);
-                navigate('/'); 
-            }, 2000); 
+                navigate('/');
+            }, 2000);
         }
     };
 
     return (
-        <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-            <div className="row" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                <div style={{ flex: '1', margin: '10px' }}>
-                    <div>
-                        <form style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                            <div style={{ flex: '1 1 45%', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
-                                <label>Last Name</label>
-                                <input name="firstName" value={formData.firstName} onChange={handleInputChange} style={{ height: '50px', borderRadius: '5px', width: '80%', border: '1px solid rgba(0, 0, 0, 0.2)' }} />
-                                {errors.firstName && <span style={{ color: 'red' }}>{errors.firstName}</span>}
+        <div className="card">
+            <div className="row">
+                <div className="col-md-8">
+                    <form className="checkout-form">
+                        <div className="form-group">
+                            <label htmlFor="lastName">Last Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="lastName"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleInputChange}
+                                placeholder="Enter last name"
+                                required
+                            />
+                            {errors.lastName && <span className="text-danger">{errors.lastName}</span>}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="firstName">First Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="firstName"
+                                name="firstName"
+                                value={formData.firstName}
+                                onChange={handleInputChange}
+                                placeholder="Enter first name"
+                                required
+                            />
+                            {errors.firstName && <span className="text-danger">{errors.firstName}</span>}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                placeholder="Enter email"
+                                required
+                            />
+                            {errors.email && <span className="text-danger">{errors.email}</span>}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="phoneNumber">Phone</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                value={formData.phoneNumber}
+                                onChange={handleInputChange}
+                                placeholder="Enter phone number"
+                                required
+                            />
+                            {errors.phoneNumber && <span className="text-danger">{errors.phoneNumber}</span>}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="address">Address</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="address"
+                                name="address"
+                                value={formData.address}
+                                onChange={handleInputChange}
+                                placeholder="Enter address"
+                                required
+                            />
+                            {errors.address && <span className="text-danger">{errors.address}</span>}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="city">City</label>
+                            <select
+                                className="form-control"
+                                id="city"
+                                name="city"
+                                value={formData.city}
+                                onChange={handleInputChange}
+                                required
+                            >
+                                <option value="">-- Select city --</option>
+                                <option value="Ha Noi">Ha Noi</option>
+                                <option value="Ho Chi Minh">Ho Chi Minh</option>
+                                <option value="Da Nang">Da Nang</option>
+                            </select>
+                            {errors.city && <span className="text-danger">{errors.city}</span>}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="note">Note</label>
+                            <textarea
+                                className="form-control"
+                                id="note"
+                                name="note"
+                                value={formData.note}
+                                onChange={handleInputChange}
+                                rows="3"
+                                placeholder="Enter note"
+                            ></textarea>
+                        </div>
+                        <button type="button" className="btn btn-primary" onClick={handleOrderClick}>
+                            Order
+                        </button>
+                        {showAlert && (
+                            <div className="alert alert-success mt-3" role="alert">
+                                Order successfully!
                             </div>
-                            <div style={{ flex: '1 1 45%', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
-                                <label>First Name</label>
-                                <input name="lastName" value={formData.lastName} onChange={handleInputChange} style={{ height: '50px', borderRadius: '5px', width: '80%', border: '1px solid rgba(0, 0, 0, 0.2)' }} />
-                                {errors.lastName && <span style={{ color: 'red' }}>{errors.lastName}</span>}
-                            </div>
-                            <div style={{ flex: '1 1 45%', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
-                                <label>Email</label>
-                                <input name="email" value={formData.email} onChange={handleInputChange} style={{ height: '50px', borderRadius: '5px', width: '80%', border: '1px solid rgba(0, 0, 0, 0.2)' }} />
-                                {errors.email && <span style={{ color: 'red' }}>{errors.email}</span>}
-                            </div>
-                            <div style={{ flex: '1 1 45%', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
-                                <label>Phone</label>
-                                <input name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} style={{ height: '50px', borderRadius: '5px', width: '80%', border: '1px solid rgba(0, 0, 0, 0.2)' }} />
-                                {errors.phoneNumber && <span style={{ color: 'red' }}>{errors.phoneNumber}</span>}
-                            </div>
-                            <div style={{ flex: '1 1 45%', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
-                                <label>Address</label>
-                                <input name="address" value={formData.address} onChange={handleInputChange} style={{ height: '50px', borderRadius: '5px', width: '80%', border: '1px solid rgba(0, 0, 0, 0.2)' }} />
-                                {errors.address && <span style={{ color: 'red' }}>{errors.address}</span>}
-                            </div>
-                            <div style={{ flex: '1 1 45%', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
-                                <label>City</label>
-                                <select name="city" value={formData.city} onChange={handleInputChange} style={{ height: '50px', borderRadius: '5px', width: '80%', border: '1px solid rgba(0, 0, 0, 0.2)' }} className='dropdown-list'>
-                                    <option value="">-- Select city --</option>
-                                    <option value="Ha Noi">Ha Noi</option>
-                                    <option value="Ho Chi Minh">Ho Chi Minh</option>
-                                    <option value="Da Nang">Da Nang</option>
-                                </select>
-                                {errors.city && <span style={{ color: 'red' }}>{errors.city}</span>}
-                            </div>
-                            <div style={{ flex: '1 1 45%', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
-                                <label>Note</label>
-                                <textarea name="note" value={formData.note} onChange={handleInputChange} style={{ height: '150px', borderRadius: '5px', width: '90%', border: '1px solid rgba(0, 0, 0, 0.2)' }} />
-                            </div>
-                            <div style={{ flex: '1 1 100%', display: 'flex', justifyContent: 'center', paddingRight: '90px' }}>
-                                <button type="button" onClick={handleOrderClick} style={{ height: '50px', borderRadius: '5px', padding: '0 20px', color: 'white', backgroundColor: '#292929' }}>
-                                    Order
-                                </button>
-                            </div>
-                            {showAlert && (
-                                <div className="alert alert-success" role="alert" id="popupAlert">
-                                    Order successfully!
-                                </div>
-                            )}
-                        </form>
-                    </div>
-                </div>
-                <div className="col-md-4 summary" style={{ flex: '0 0 30%', maxWidth: '30%', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', maxHeight: '300px' }}>
-                    <div><h5><b>Summary</b></h5></div>
-                    <hr />
-                    <div className="row" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <div className="col" style={{ paddingLeft: '0px' }}>ITEMS</div>
-                        <div className="col text-right">{cart.length}</div>
-                    </div>
-                    <form>
-                        <p>SHIPPING</p>
-                        <select disabled>
-                            <option>Hỏa tốc - 5.00$</option>
-                        </select>
+                        )}
                     </form>
-                    <div className="row" style={{ borderTop: '1px solid rgba(0,0,0,.1)', padding: '2vh 0' }}>
-                        <div className="col">TOTAL PRICE</div>
-                        <div className="col text-right">$ {(parseFloat(total) + 5).toFixed(2)}</div>
+                </div>
+                <div className="col-md-4 summary" style={{maxHeight: '200px'}}>
+                    <div className="summary-content">
+                        <h5>Summary</h5>
+                        <hr />
+                        <div className="row">
+                            <div className="col">ITEMS</div>
+                            <div className="col text-right">{cart.length}</div>
+                        </div>
+                        <div className="row">
+                            <div className="col">SHIPPING</div>
+                            <div className="col text-right">
+                                <select disabled>
+                                    <option>Hỏa tốc - 5.00$</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col">TOTAL PRICE</div>
+                            <div className="col text-right">${(parseFloat(total) + 5).toFixed(2)}</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                <button type="button" onClick={() => navigate('/cart')} style={{ height: '50px', borderRadius: '5px', padding: '0 20px', color: 'white', backgroundColor: '#292929' }}>
+            <div className="back-to-cart">
+                <button type="button" className="btn btn-secondary" onClick={() => navigate('/cart')}>
                     Back to Cart
                 </button>
             </div>
