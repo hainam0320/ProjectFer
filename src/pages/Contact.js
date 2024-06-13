@@ -21,25 +21,25 @@ const Contact = () => {
                                     <div>
                                         First Name
                                     </div>
-                                    <textarea style={{ width: '100%', height: '50px', borderRadius: '5px' }} />
+                                    <input style={{ width: '100%', height: '50px', borderRadius: '5px' }} />
                                 </div>
                                 <div style={{ flex: '1 1 45%', margin: '10px' }}>
                                     <div>
                                         Last Name
                                     </div>
-                                    <textarea style={{ width: '100%', height: '50px', borderRadius: '5px' }} />
+                                    <input style={{ width: '100%', height: '50px', borderRadius: '5px' }} />
                                 </div>
                                 <div style={{ flex: '1 1 45%', margin: '10px' }}>
                                     <div>
                                         Email
                                     </div>
-                                    <textarea style={{ width: '100%', height: '50px', borderRadius: '5px' }} />
+                                    <input style={{ width: '100%', height: '50px', borderRadius: '5px' }} />
                                 </div>
                                 <div style={{ flex: '1 1 45%', margin: '10px' }}>
                                     <div>
                                         Phone Number
                                     </div>
-                                    <textarea style={{ width: '100%', height: '50px', borderRadius: '5px' }} />
+                                    <input style={{ width: '100%', height: '50px', borderRadius: '5px' }} />
                                 </div>
                                 <div style={{ flex: '1 1 100%', margin: '10px' }}>
                                     <div>
