@@ -64,6 +64,9 @@ const Header = () => {
                                         >
                                             <Link to="/cart">
                                                 <FontAwesomeIcon icon={faShoppingCart} />
+                                                {cart.length > 0 && (
+                                                    <span className="badge">{cart.length}</span>
+                                                )}
                                             </Link>
                                             {isCartOpen && (
                                                 <div className="cart-summary-popup">

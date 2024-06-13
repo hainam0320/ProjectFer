@@ -714,3 +714,15 @@ img.img-fluid {
 .cart-summary-popup p {
     margin: 5px 0;
 }
+
+/* css badge */
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+}
