@@ -1,22 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
-import '../styles/Style.css'; // Import your main styles
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/Style.css';
+import AuthContext from '../features/AuthContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const loginRef = useRef(null);
+    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+
     useEffect(() => {
         if (loginRef.current) {
             loginRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }, []);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // Handle login logic here
         console.log('Login submitted with:', { email, password });
-        if (loginRef.current) {
-            loginRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
+        login();
+        navigate('/');
     };
 
     return (

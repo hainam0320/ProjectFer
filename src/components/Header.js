@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import "../styles/Style.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faBars } from '@fortawesome/free-solid-svg-icons';
 import CartContext from '../features/CartContext';
+import AuthContext from '../features/AuthContext';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const { isLoggedIn, logout } = useContext(AuthContext);
     const { cart, total } = useContext(CartContext);
 
     const toggleMenu = () => {
@@ -23,8 +24,8 @@ const Header = () => {
     };
 
     return (
-        <div className="full-width">
-            <header>
+        <div className="header-wrapper">
+            <header className="main-header">
                 <div className="top-bar">
                     <div className="contact-info">
                         <span>Phone: 0123456789</span>
@@ -37,7 +38,7 @@ const Header = () => {
                         <FontAwesomeIcon icon={faBars} />
                     </button>
                     <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
-                        <div className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <Link className="nav-link" to="/">Home</Link>
                             </li>
@@ -50,38 +51,48 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/contact">Contact</Link>
                             </li>
-                            <div className="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/login">Login</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/register">Register</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <div
-                                        className="nav-link cart-icon"
-                                        onMouseEnter={handleMouseEnter}
-                                        onMouseLeave={handleMouseLeave}
-                                        style={{ position: 'relative' }}
-                                    >
-                                        <Link to="/cart">
-                                            <FontAwesomeIcon icon={faShoppingCart} />
-                                        </Link>
-                                        {isCartOpen && (
-                                            <div className="cart-summary-popup">
-                                                <h3>Summary</h3>
-                                                <p>Total Items: {cart.length}</p>
-                                                <p>Total Price: ${total.toFixed(2)}</p>
-                                            </div>
-                                        )}
-                                    </div>
-                                </li>
-                            </div>
-                        </div>
+                        </ul>
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                            {isLoggedIn ? (
+                                <>
+                                    <li className="nav-item">
+                                        <div
+                                            className="nav-link cart-icon"
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
+                                            style={{ position: 'relative' }}
+                                        >
+                                            <Link to="/cart">
+                                                <FontAwesomeIcon icon={faShoppingCart} />
+                                            </Link>
+                                            {isCartOpen && (
+                                                <div className="cart-summary-popup">
+                                                    <h3>Cart Summary</h3>
+                                                    <p>Total Items: {cart.length}</p>
+                                                    <p>Total Price: ${total.toFixed(2)}</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </li>
+                                    <li className="nav-item">
+                                        <button className="nav-link btn" onClick={logout}>Logout</button>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/login">Login</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/register">Register</Link>
+                                    </li>
+                                </>
+                            )}
+                        </ul>
                     </div>
                 </nav>
             </header>
-            <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minHeight: '60vh' }} className="hero bg-base-200 bg-blend-overlay">
+            <div className="hero-section">
                 <div className="hero-content text-center">
                     <div className="max-w-xl">
                         <h1 className="text-6xl font-bold max-md:text-4xl text-accent-content">Best Clothing Shop Of The Year!</h1>
