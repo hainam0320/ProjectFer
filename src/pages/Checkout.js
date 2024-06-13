@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/Style.css";
+import CartContext from '../features/CartContext';
 
 const Checkout = () => {
     const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const Checkout = () => {
     const [errors, setErrors] = useState({});
     const [showAlert, setShowAlert] = useState(false);
     const navigate = useNavigate();
+    const { cart, total } = useContext(CartContext);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -79,7 +81,7 @@ const Checkout = () => {
                             <div style={{ flex: '1 1 45%', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
                                 <label>City</label>
                                 <select name="city" value={formData.city} onChange={handleInputChange} style={{ height: '50px', borderRadius: '5px', width: '80%', border: '1px solid rgba(0, 0, 0, 0.2)' }} className='dropdown-list'>
-                                    <option value="">--Select city--</option>
+                                    <option value="">-- Select city --</option>
                                     <option value="Ha Noi">Ha Noi</option>
                                     <option value="Ho Chi Minh">Ho Chi Minh</option>
                                     <option value="Da Nang">Da Nang</option>
@@ -103,19 +105,23 @@ const Checkout = () => {
                         </form>
                     </div>
                 </div>
-                <div className="col-md-4 summary" style={{ flex: '0 0 30%', maxWidth: '30%', padding: '20px', border: '1px solid #ccc', borderRadius: '5px' }}>
+                <div className="col-md-4 summary" style={{ flex: '0 0 30%', maxWidth: '30%', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', maxHeight: '300px' }}>
                     <div><h5><b>Summary</b></h5></div>
                     <hr />
                     <div className="row" style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div className="col" style={{ paddingLeft: '0px' }}>ITEMS</div>
-                        <div className="col text-right">12</div>
+                        <div className="col text-right">{cart.length}</div>
                     </div>
                     <form>
                         <p>SHIPPING</p>
-                        <select><option className="text-muted">Express - 5.00$</option></select>
-                        <p>DISCOUNT CODE</p>
-                        <input id="code" placeholder="Enter your code" />
+                        <select disabled>
+                            <option>Hỏa tốc - 5.00$</option>
+                        </select>
                     </form>
+                    <div className="row" style={{ borderTop: '1px solid rgba(0,0,0,.1)', padding: '2vh 0' }}>
+                        <div className="col">TOTAL PRICE</div>
+                        <div className="col text-right">$ {(parseFloat(total) + 5).toFixed(2)}</div>
+                    </div>
                 </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
