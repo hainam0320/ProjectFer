@@ -5,10 +5,12 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
     useEffect(() => {
         const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
         setTotal(total);
+        localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
     const addToCart = (product) => {
@@ -32,8 +34,12 @@ export const CartProvider = ({ children }) => {
         setCart(cart.filter(item => item.id !== id));
     };
 
+    const setLoginStatus = (loggedIn) => {
+        setIsLoggedIn(loggedIn);
+    };
+
     return (
-        <CartContext.Provider value={{ cart, addToCart, incrementQuantity, decrementQuantity, removeItem, total }}>
+        <CartContext.Provider value={{ cart, addToCart, incrementQuantity, decrementQuantity, removeItem, total, isLoggedIn, setLoginStatus }}>
             {children}
         </CartContext.Provider>
     );

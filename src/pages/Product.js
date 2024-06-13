@@ -4,7 +4,8 @@ import "../styles/Style.css";
 import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CartContext from '../features/CartContext';
-
+import { useNavigate } from 'react-router-dom';
+import AuthContext from '../features/AuthContext';
 const products = [
     { id: 1, name: "Walk London Milano lap", price: 115, image: "logo123.png" },
     { id: 2, name: "Walk London Saan tos", price: 88, image: "logo123.png" },
@@ -18,12 +19,14 @@ const products = [
 ];
 
 const Products = () => {
-    const { addToCart, total, cart } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
+    const { isLoggedIn } = useContext(AuthContext);
     const [currentPage, setCurrentPage] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [priceRange, setPriceRange] = useState('all');
     const productsPerPage = 8;
     const productSectionRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (productSectionRef.current) {
@@ -55,6 +58,15 @@ const Products = () => {
     const handleFilterChange = (event) => {
         setPriceRange(event.target.value);
         setCurrentPage(0); 
+    };
+
+    const handleAddToCart = (product) => {
+        if (isLoggedIn) {
+            addToCart(product);
+        } else {
+            alert("Please log in to add items to the cart");
+            navigate('/login');
+        }
     };
 
     return (
@@ -94,7 +106,7 @@ const Products = () => {
                         <button 
                             style={{backgroundColor:'#292929' , borderColor:'black'}} 
                             className="btn btn-primary"
-                            onClick={() => addToCart(product)}
+                            onClick={() => handleAddToCart(product)}
                         >
                             <FontAwesomeIcon icon={faCartPlus} /> Add to cart
                         </button>
