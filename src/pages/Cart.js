@@ -49,7 +49,9 @@ const Cart = () => {
                     </div>
                     <form>
                         <p>SHIPPING</p>
-                        <select><option className="text-muted">Standard-Delivery- $5.00</option></select>
+                        <select>
+                            <option className="text-muted">Hỏa tốc - $5.00</option>
+                            </select>
                         <p>DISCOUNT CODE</p>
                         <input id="code" placeholder="Enter your code" />
                     </form>
