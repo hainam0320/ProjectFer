@@ -163,6 +163,14 @@ img.img-fluid {
     }
 }
 /* Css Header */
+.main-header {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
 .header {
     text-align: center;
     padding: 50px 0;
@@ -281,7 +289,6 @@ img.img-fluid {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #222;
     padding: 10px 20px;
 }
 

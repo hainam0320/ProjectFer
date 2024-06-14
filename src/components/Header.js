@@ -26,14 +26,14 @@ const Header = () => {
     return (
         <div className="header-wrapper">
             <header className="main-header">
-                <div className="top-bar">
+                <div className="top-bar" style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
                     <div className="contact-info">
                         <span>Phone: 0123456789</span>
                         <span>Email: namanhstore@gmail.com</span>
                     </div>
                 </div>
-                <nav className="navbar navbar-expand-lg navbar-dark">
-                    <Link className="navbar-brand" to="/">NamAnh Store</Link>
+                <nav className="navbar navbar-expand-lg navbar-dark" style={{backgroundColor: 'rgba(0,0,0,0.5'}} >
+                    <Link className="navbar-brand" to="/" style={{paddingLeft:'30px'}}>NamAnh Store</Link>
                     <button className="navbar-toggler" type="button" onClick={toggleMenu}>
                         <FontAwesomeIcon icon={faBars} />
                     </button>
@@ -69,8 +69,8 @@ const Header = () => {
                                                 )}
                                             </Link>
                                             {isCartOpen && (
-                                                <div className="cart-summary-popup">
-                                                    <h3>Cart Summary</h3>
+                                                <div className="cart-summary-popup" style={{backgroundColor: 'rgba(0,0,0,0.5'}}>
+                                                    <h3>Cart</h3>
                                                     <p>Total Items: {cart.length}</p>
                                                     <p>Total Price: ${total.toFixed(2)}</p>
                                                 </div>
