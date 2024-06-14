@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import ReactPaginate from 'react-paginate';
 import "../styles/Style.css";
-import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faSearch, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CartContext from '../features/CartContext';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../features/AuthContext';
+import WishlistContext from '../features/WishlistContext';
+import Swal from 'sweetalert2';
+
 const products = [
     { id: 1, name: "Walk London Milano lap", price: 115, image: "logo123.png" },
     { id: 2, name: "Walk London Saan tos", price: 88, image: "logo123.png" },
@@ -21,6 +24,7 @@ const products = [
 const Products = () => {
     const { addToCart } = useContext(CartContext);
     const { isLoggedIn } = useContext(AuthContext);
+    const { addToWishlist } = useContext(WishlistContext);
     const [currentPage, setCurrentPage] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [priceRange, setPriceRange] = useState('all');
@@ -52,20 +56,53 @@ const Products = () => {
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
-        setCurrentPage(0); 
+        setCurrentPage(0);
     };
 
     const handleFilterChange = (event) => {
         setPriceRange(event.target.value);
-        setCurrentPage(0); 
+        setCurrentPage(0);
     };
 
     const handleAddToCart = (product) => {
         if (isLoggedIn) {
             addToCart(product);
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to Cart',
+                text: `${product.name} has been added to your cart!`,
+                confirmButtonText: 'OK'
+            });
         } else {
-            alert("Please log in to add items to the cart");
-            navigate('/login');
+            Swal.fire({
+                icon: 'error',
+                title: 'Not Logged In',
+                text: 'Please log in to add items to the cart',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                navigate('/login');
+            });
+        }
+    };
+
+    const handleAddToWishlist = (product) => {
+        if (isLoggedIn) {
+            addToWishlist(product);
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to Wishlist',
+                text: `${product.name} has been added to your wishlist!`,
+                confirmButtonText: 'OK'
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Not Logged In',
+                text: 'Please log in to add items to the wishlist',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                navigate('/login');
+            });
         }
     };
 
@@ -73,15 +110,15 @@ const Products = () => {
         <section ref={productSectionRef} className="container trending-products">
             <h2 className="text-center mb-4">Our Products</h2>
             <div className="search-filter-container">
-                <div className="filter-container" style={{paddingBottom:'10px',paddingLeft:'15px'}}>
-                    <select style={{color:'#292929',borderColor:'#292929',paddingRight:'2px'}} className="filter-select" onChange={handleFilterChange}>
+                <div className="filter-container">
+                    <select className="filter-select" onChange={handleFilterChange}>
                         <option value="all">All</option>
                         <option value="1-100">1 - 100$</option>
                         <option value="110-200">110 - 200$</option>
                         <option value="210-500">210 - 500$</option>
                     </select>
                 </div>
-                <div className="search-container" style={{paddingLeft:'550px',paddingRight:'15px', paddingBottom:'10px'}}>
+                <div className="search-container">
                     <input
                         type="text"
                         value={searchTerm}
@@ -89,27 +126,36 @@ const Products = () => {
                         placeholder="Search products..."
                         className="search-input"
                     />
-                    <button className="search-icon" style={{color:'white', backgroundColor:'#292929', width: '50px', height: '40px', borderRadius: '7px'}}>
+                    <button className="search-icon">
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </div>
             </div>
             {currentProducts.length === 0 && (
-                <p style={{ color: 'red', textAlign: 'center', marginTop: '20px' }}>No products found</p>
+                <p style={{ color: 'red', textAlign: 'center', marginTop: '20px' }}>Not found any products</p>
             )}
             <div className="row">
                 {currentProducts.map(product => (
                     <div key={product.id} className="col-md-3 col-sm-6 col-12 product">
                         <img src={product.image} alt={product.name} />
                         <h5>{product.name}</h5>
-                        <p style={{color:'red'}}>{`$${product.price}`}</p>
-                        <button 
-                            style={{backgroundColor:'#292929' , borderColor:'black'}} 
-                            className="btn btn-primary"
-                            onClick={() => handleAddToCart(product)}
-                        >
-                            <FontAwesomeIcon icon={faCartPlus} /> Add to cart
-                        </button>
+                        <p style={{ color: 'red' }}>{`$${product.price}`}</p>
+                        <div className="button-group" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <button
+                                style={{ backgroundColor: '#292929', borderColor: 'black', marginRight: '5px' }}
+                                className="btn btn-primary"
+                                onClick={() => handleAddToCart(product)}
+                            >
+                                <FontAwesomeIcon icon={faCartPlus} /> Add to cart
+                            </button>
+                            <button
+                                style={{ backgroundColor: '#e74c3c', borderColor: 'black' }}
+                                className="btn btn-secondary"
+                                onClick={() => handleAddToWishlist(product)}
+                            >
+                                <FontAwesomeIcon icon={faHeart} /> Add to wishlist
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
