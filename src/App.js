@@ -12,13 +12,15 @@ import Products from './pages/Product';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail'; 
 import Checkout from './pages/Checkout';
+import Wishlist from './components/Wishlist';
 import { CartProvider } from './features/CartContext';
 import { AuthProvider } from './features/AuthContext';
-
+import { WishlistProvider } from './features/WishlistContext';
 const App = () => {
   return (
     <AuthProvider>
       <CartProvider>
+      <WishlistProvider>
         <Router>
           <Header />
           <Stats />
@@ -32,9 +34,11 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/wishlist" element={<Wishlist />} />
           </Routes>
           <Footer />
         </Router>
+        </WishlistProvider>
       </CartProvider>
     </AuthProvider>
   );

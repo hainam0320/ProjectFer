@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faBars, faHeart } from '@fortawesome/free-solid-svg-icons';
 import CartContext from '../features/CartContext';
 import AuthContext from '../features/AuthContext';
 
@@ -76,6 +76,11 @@ const Header = () => {
                                                 </div>
                                             )}
                                         </div>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link heart-link" to="/wishlist">
+                                            <FontAwesomeIcon icon={faHeart} />
+                                        </Link>
                                     </li>
                                     <li className="nav-item">
                                         <button className="nav-link btn" onClick={logout}>Logout</button>

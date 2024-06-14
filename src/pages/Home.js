@@ -30,7 +30,7 @@ const Home = () => {
                             <img src={product.image} alt={product.name} className="card-img-top" />
                             <div className="card-body">
                                 <h5 className="card-title">{product.name}</h5>
-                                <p style={{color:'red'}} className="card-text">Price: {product.price}</p>
+                                <p style={{color:'red'}} className="card-text"> {product.price}</p>
                                 <Link style={{backgroundColor:'#292929'}} to={`/product/${product.id}`} className="btn btn-primary">View</Link>
                             </div>
                         </div>
