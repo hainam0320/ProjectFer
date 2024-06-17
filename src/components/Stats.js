@@ -4,7 +4,7 @@ import "../styles/Style.css";
 const Stats = () => {
     return (
         <div className="container text-center my-5">
-            <div className="row">
+            <div className="row" style={{backgroundColor: 'darkgray', borderRadius: '10px'}}>
                 <div className="col-md-3">
                     <h2>10+</h2>
                     <p>Years On the Market</p>
@@ -14,11 +14,11 @@ const Stats = () => {
                     <p>Annual Revenue Growth</p>
                 </div>
                 <div className="col-md-3">
-                    <h2>2600+</h2>
+                    <h2>1600+</h2>
                     <p>Global Partners</p>
                 </div>
                 <div className="col-md-3">
-                    <h2>180000+</h2>
+                    <h2>10000+</h2>
                     <p>Daily Website Visits</p>
                 </div>
             </div>

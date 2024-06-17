@@ -8,20 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from '../features/AuthContext';
 import WishlistContext from '../features/WishlistContext';
 import Swal from 'sweetalert2';
-
-const products = [
-    { id: 1, name: "Walk London Milano lap", price: 115, image: "logo123.png" },
-    { id: 2, name: "Walk London Saan tos", price: 88, image: "logo123.png" },
-    { id: 3, name: "Reebok x VB dual", price: 90, image: "logo123.png" },
-    { id: 4, name: "Nike Air Zoom", price: 130, image: "logo123.png" },
-    { id: 5, name: "Jack & Jones suede", price: 34.5, image: "logo123.png" },
-    { id: 6, name: "Croc classic all", price: 59.99, image: "logo123.png" },
-    { id: 7, name: "Vans Era Suede", price: 75, image: "logo123.png" },
-    { id: 8, name: "PUMA Palermo Leather", price: 220, image: "logo123.png" },
-    { id: 9, name: "PUMA Palermo Leather", price: 85, image: "logo123.png" }
-];
+import { ProductContext } from '../features/ProductContext';
 
 const Products = () => {
+    const { products } = useContext(ProductContext);
     const { addToCart } = useContext(CartContext);
     const { isLoggedIn } = useContext(AuthContext);
     const { addToWishlist } = useContext(WishlistContext);
@@ -42,8 +32,8 @@ const Products = () => {
         (product.name.toLowerCase().includes(searchTerm.toLowerCase()) || searchTerm === '') &&
         ((priceRange === 'all') ||
          (priceRange === '1-100' && product.price >= 1 && product.price <= 100) ||
-         (priceRange === '110-200' && product.price >= 110 && product.price <= 200) ||
-         (priceRange === '210-500' && product.price >= 210 && product.price <= 500))
+         (priceRange === '101-200' && product.price >= 101 && product.price <= 200) ||
+         (priceRange === '201-500' && product.price >= 201 && product.price <= 500))
     );
 
     const offset = currentPage * productsPerPage;
@@ -114,8 +104,8 @@ const Products = () => {
                     <select className="filter-select" onChange={handleFilterChange}>
                         <option value="all">All</option>
                         <option value="1-100">1 - 100$</option>
-                        <option value="110-200">110 - 200$</option>
-                        <option value="210-500">210 - 500$</option>
+                        <option value="101-200">101 - 200$</option>
+                        <option value="201-500">201 - 500$</option>
                     </select>
                 </div>
                 <div className="search-container">

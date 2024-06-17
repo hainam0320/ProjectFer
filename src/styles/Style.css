@@ -245,11 +245,12 @@ img.img-fluid {
 
 .product img {
     width: 100%;
-    height: auto;
     border: 1px solid #333;
     padding: 5px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    height: 250px; 
 }
 
 .product h5 {
@@ -261,27 +262,6 @@ img.img-fluid {
     margin: 10px 0;
     font-size: 1.2em;
     color: #007bff;
-}
-
-/* Css Buy */
-.product {
-    text-align: center; 
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.buy-button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.buy-button:hover {
-    background-color: #0056b3;
 }
 
 /* Css Navbar */
@@ -775,4 +755,107 @@ img.img-fluid {
 }
 .heart-link .fa-heart {
     color: red;
+}
+/* css product-management */
+.product-management {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-management h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333; 
+}
+
+.product-management form {
+    margin-bottom: 1.5rem;
+}
+
+.product-management input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.product-management button {
+    padding: 0.5rem 1rem;
+    background-color: #292929;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.product-management button:hover {
+    background-color: #1a1a1a;
+}
+
+.product-list {
+    margin-top: 2rem;
+}
+
+.product-list h3 {
+    margin-bottom: 1rem;
+    color: #333; 
+}
+
+.product-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-list th, .product-list td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-list th {
+    background-color: #f0f0f0;
+    color: #333; 
+}
+
+.product-list td img {
+    max-width: 50px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.product-list td button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.product-list td button:hover {
+    background-color: #c44132;
+}
+.product-list td .edit-button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #3498db; 
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.product-list td .edit-button:hover {
+    background-color: #2980b9; 
 }

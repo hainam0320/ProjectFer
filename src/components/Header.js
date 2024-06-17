@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faBars, faHeart } from '@fortawesome/free-solid-svg-icons';
 import CartContext from '../features/CartContext';
@@ -10,6 +10,7 @@ const Header = () => {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { isLoggedIn, logout } = useContext(AuthContext);
     const { cart, total } = useContext(CartContext);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -23,6 +24,11 @@ const Header = () => {
         setIsCartOpen(false);
     };
 
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
+
     return (
         <div className="header-wrapper">
             <header className="main-header">
@@ -32,8 +38,8 @@ const Header = () => {
                         <span>Email: namanhstore@gmail.com</span>
                     </div>
                 </div>
-                <nav className="navbar navbar-expand-lg navbar-dark" style={{backgroundColor: 'rgba(0,0,0,0.5'}} >
-                    <Link className="navbar-brand" to="/" style={{paddingLeft:'30px'}}>NamAnh Store</Link>
+                <nav className="navbar navbar-expand-lg navbar-dark" style={{backgroundColor: 'rgba(0,0,0,0.5)'}} >
+                    <Link className="navbar-brand" to="/" style={{paddingLeft: '30px'}}>NamAnh Store</Link>
                     <button className="navbar-toggler" type="button" onClick={toggleMenu}>
                         <FontAwesomeIcon icon={faBars} />
                     </button>
@@ -51,6 +57,11 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/contact">Contact</Link>
                             </li>
+                            {isLoggedIn && (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/product-management">Product Management</Link>
+                                </li>
+                            )}
                         </ul>
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             {isLoggedIn ? (
@@ -69,7 +80,7 @@ const Header = () => {
                                                 )}
                                             </Link>
                                             {isCartOpen && (
-                                                <div className="cart-summary-popup" style={{backgroundColor: 'rgba(0,0,0,0.5'}}>
+                                                <div className="cart-summary-popup" style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
                                                     <h3>Cart</h3>
                                                     <p>Total Items: {cart.length}</p>
                                                     <p>Total Price: ${total.toFixed(2)}</p>
@@ -83,7 +94,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className="nav-item">
-                                        <button className="nav-link btn" onClick={logout}>Logout</button>
+                                        <button className="nav-link btn" onClick={handleLogout}>Logout</button>
                                     </li>
                                 </>
                             ) : (

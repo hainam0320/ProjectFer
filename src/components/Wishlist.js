@@ -11,14 +11,14 @@ const Wishlist = () => {
             {wishlist.length === 0 && (
                 <p style={{ color: 'red', textAlign: 'center', marginTop: '20px' }}>Your wishlist is empty</p>
             )}
-            <div className="row">
+            <div className="row" style={{textAlign: 'center'}}>
                 {wishlist.map(product => (
                     <div key={product.id} className="col-md-3 col-sm-6 col-12 product">
                         <img src={product.image} alt={product.name} />
                         <h5>{product.name}</h5>
-                        <p style={{color:'red'}}>{`$${product.price}`}</p>
-                        <button 
-                            style={{backgroundColor:'#e74c3c', borderColor:'black'}} 
+                        <p style={{ color: 'red' }}>{`$${product.price}`}</p>
+                        <button
+                            style={{ backgroundColor: '#e74c3c', borderColor: 'black' }}
                             className="btn btn-secondary"
                             onClick={() => removeFromWishlist(product.id)}
                         >
